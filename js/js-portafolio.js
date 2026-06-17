@@ -27,7 +27,7 @@ const softwareProjects = {
             id: "tec-ruiz",
             titulo: "Mi Web Personal - Tec Ruiz",
             descripcion: "Informática Ruiz, mi primera página web, sitio web informativo, con contenido orientado a conocimientos informáticos.",
-            imagen: "img/soft/web/mi-portafolio/porta-Inicio.png",
+            imagen: "img/soft/web/mi-portafolio/porta-inicio.png",
             urlEnVivo: "https://rolandfrak.github.io/Blog", 
             tags: ["HTML", "CSS", "JS"]
         },
