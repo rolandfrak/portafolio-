@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Proyecto</title>
+    <link rel="stylesheet" href="css/css-cabeza.css">
+    <link rel="stylesheet" href="css/css-portafolio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gallery-wrapper { 
+            max-width: 1200px; 
+            padding: 0 20px; 
+            margin: 0 auto;
+            margin-top: 0%; /* Respeta el menú superior fijo en móviles */
+        }
+        /* CARTA INFORMATIVA */
+        .project-info-card {
+            background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+            border: 1px solid #334155;
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .info-title { font-size: 24pt; font-weight: 800; margin: 0 0 5px 0; color: #fff; }
+        .info-org { font-size: 11pt; color: #3b82f6; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .info-general { font-size: 13pt; color: #e2e8f0; line-height: 1.6; margin-bottom: 15px; }
+        .info-detailed { font-size: 11pt; color: #94a3b8; line-height: 1.6; }
+        .info-action-bar { margin-top: 25px; }
+        .btn-inline { display: inline-block; width: auto; padding: 12px 25px; margin-right: 15px; }
+
+        /* ESTILO NUEVO: BOTÓN DESHABILITADO POR EL ADMINISTRADOR */
+        .btn-card.disabled-btn {
+            background: #475569 !important; /* Gris pizarra opaco */
+            border-color: #64748b !important;
+            color: #94a3b8 !important;
+            opacity: 0.6;                  /* Efecto traslúcido/atenuado */
+            cursor: not-allowed !important; /* Cursor con signo de prohibición */
+            box-shadow: none !important;
+            transform: none !important;     /* Evita efectos de animación hover */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor dinámico de Cabecera -->
+    <div id="cabeza"></div>
+    <br><br><br>
+
+    <nav class="portfolio-nav">
+        <div class="main-filters">
+            <a href="index.html?cat=software" class="filter-btn active" style="text-decoration: none; display: inline-block;">
+                <i class="fa-solid fa-code"></i> SOFTWARE
+            </a>
+            <a href="index.html?cat=diseno" class="filter-btn" style="text-decoration: none; display: inline-block;">
+                <i class="fa-solid fa-palette"></i> DISEÑO
+            </a>
+        </div>
+    </nav>
+
+    <div class="gallery-wrapper">
+        <!-- Contenedor de la carta informativa -->
+        <div id="info-card-container"></div>
+
+        <!-- Grilla dinámica de fotos/módulos -->
+        <div id="gallery-grid" class="portfolio-grid"></div>
+    </div>
+
+    <!-- Componente Lightbox para ver a tamaño real -->
+    <div id="portfolio-lightbox" class="lightbox">
+        <button class="lightbox-close" onclick="document.getElementById('portfolio-lightbox').classList.remove('active')">&times;</button>
+        <div class="lightbox-content-wrapper">
+            <img id="lightbox-img" src="" alt="Tamaño Real">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+    </div>
+    <br>
+    <!-- Contenedor dinámico de Pie de Página -->
+    <div id="pie"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const galleryData = {
+                "tupa-local": {
+                    titulo: "Sistema de Gestión TUPA",
+                    organizacion: "IESTP 'Juan José Farfán Céspedes'",
+                    general: "Automatización integral de la mesa de partes y el control de trámites basados en el Texto Único de Procedimientos Administrativos.",
+                    detallada: "El sistema resuelve la congestión en la atención al cliente mediante formularios modulares en java. Permite la emisión ágil de boletería y un seguimiento exacto de las solicitudes de los usuarios. Su uso local garantiza la máxima velocidad de ejecución en la infraestructura de la secretaría.",
+                    items: [
+                        { 
+                        titulo: "Inicio De sesión", 
+                        desc: "Validación de acceso a usuarios del sistema.", 
+                        img: "img/soft/tupa/inicio-tupa.jpg", 
+                        tags: ["JAVA","MySql", "Formulario"] 
+                        
+                        },
+                        
+                        { 
+                        titulo: "Menú Principal", 
+                        desc: "Pantalla Principal del sistema, incluye menú con secciones de Inicio Registrar, Agregar y Solicitud de Servicios", 
+                        img: "img/soft/tupa/menu-tupa.jpg", 
+                        tags: ["JAVA","MySQL", "Menú Principal"] 
+                        },
+                        
+                        { 
+                        titulo: "Gestión de Usuarios", 
+                        desc: "Formulario de Gestión de Usuarios, Registra, busca, actualiza y elimina usuarios.", 
+                        img: "img/soft/tupa/usuarios-tupa.jpg", 
+                        tags: ["JAVA","MySQL", "Formulario", "Acceso"] 
+                        },
+                        
+                        { 
+                        titulo: "Gestión de Recursos Propios", 
+                        desc: "Formulario de Gestión de Recursos Propios, Registra, busca, actualiza y elimina Recursos Propios.", 
+                        img: "img/soft/tupa/recursos-tupa.jpg", 
+                        tags: ["JAVA","MySQL", "Formulario"] 
+                        },
+                        
+                        { 
+                        titulo: "Boleteria de Recursos Propios", 
+                        desc: "Formulario de Gestión de boleteria de recursos propios.", 
+                        img: "img/soft/tupa/venta-recurso-tupa.jpg", 
+                        tags: ["JAVA","MySQL", "Formulario", "Boleteria"] 
+                        }
+                    ]
+                },
+                
+                "infor-ruiz": 
+                {
+                    titulo: "Mi Primera Página Web",
+                    organizacion: "Informática Ruiz.",
+                    general: "Mi Primera Página web sitio orientado a conocimientos informáticos.",
+                    detallada: "Desarrollada para posicionar la marca en internet. Cuenta con un cotizador interactivo multi-selector para productos variables.",
+                    urlWeb: "https://rolandfrak.github.io/Mi-Primera-Web/index.html",
+                    items: [
+                        { 
+                        titulo: "Página de Inicio", 
+                        desc: "Diseño premium de bienvenida.", 
+                        img: "img/soft/web/primer-html/inf-inicio.png", 
+                        urlSeccion: "https://rolandfrak.github.io/Mi-Primera-Web/index.html", 
+                        tags: ["HTML5", "CSS3"] 
+                        },
+                        
+                        { 
+                        titulo: "Sección Sobre Mi", 
+                        desc: "Detalla la historia, visión e identidad.", 
+                        img: "img/soft/web/primer-html/inf-nosotros.png", 
+                        urlSeccion: "https://rolandfrak.github.io/Mi-Primera-Web/sobremi.html", 
+                        tags: ["Blade", "Responsive"] 
+                        },
+                        
+                        { 
+                        titulo: "Sección Colección", 
+                        desc: "Estructura que detalla los temas Informáticos.", 
+                        img: "img/soft/web/primer-html/inf-coleccion.png", 
+                        urlSeccion: "https://rolandfrak.github.io/Mi-Primera-Web/coleccion.html", 
+                       tags: ["Blade", "Responsive"] 
+                        },
+                       
+                        { 
+                        titulo: "Sección Colección Ordenadores", 
+                        desc: "Estructura corporativa de ordenadores.", 
+                        img: "img/soft/web/primer-html/inf-col-ordenador.png", 
+                        urlSeccion: "https://rolandfrak.github.io/ArteMadera/nosotros.html",
+                        tags: ["Blade", "Responsive"] }
+                    ]
+                }, 
+                
+             "tec-ruiz": {
+                    titulo: "Web Personal Tec Ruiz",
+                    organizacion: "Tec Roland Ruiz.",
+                    general: "Mi Primera Página web sitio orientado a conocimientos informáticos.",
+                    detallada: "Desarrollada para posicionar la marca en internet. Cuenta con un cotizador interactivo.",
+                    urlWeb: "https://rolandfrak.github.io/Blog",
+                    items: [
+                        { 
+                        titulo: "Página de Inicio", 
+                        desc: "Diseño premium de bienvenida.", 
+                        img: "img/soft/web/mi-portafolio/porta-inicio.png", 
+                        urlSeccion: "https://rolandfrak.github.io/Blog", 
+                        tags: ["HTML5", "CSS", "JS", "Responsive"] 
+                        },
+                        
+                        { 
+                        titulo: "Sección de Información Personal", 
+                        desc: "Mantenimiento, ensamble y reparación de PCs.", 
+                        img: "img/soft/web/mi-portafolio/porta-info.png",
+                        urlSeccion: "https://rolandfrak.github.io/Blog", 
+                        tags: ["HTML5", "CSS", "JS", "Responsive"],
+                        deshabilitado: true 
+                        },
+                        
+                        { 
+                        titulo: "Sección de Resumen Académico Profesional", 
+                        desc: "Esta sección guarda todos los manuales para el soporte de software.", 
+                        img: "img/soft/web/mi-portafolio/porta-resumen.jpg", tags: ["HTML5", "CSS", "JS", "Responsive"],
+                        deshabilitado: true 
+                        },
+                        
+                        { 
+                        titulo: "Página - Mi Blog", 
+                        desc: "Soporte a Periféricos como Impresoras, teclados, Proyectores.", 
+                        img: "img/soft/web/mi-blog/blog-inicio.png", 
+                        urlSeccion: "https://rolandfrak.github.io/Blog", 
+                        tags: ["HTML5", "CSS", "JS", "Responsive"] ,
+                        deshabilitado: true 
+                        },
+                        
+                        { 
+                          titulo: "Página - Portafolio", 
+                          desc: "Sección de soporte a servidores almacena manuales de la correcta instalación y administración a servidores.", 
+                          img: "img/soft/web/mi-porta/porta-inicio.png", 
+                          urlSeccion: "https://rolandfrak.github.io/Blog", 
+                          tags: ["HTML5", "CSS", "JS", "Responsive"],
+                          deshabilitado: true 
+                        },
+                        
+                        { 
+                        titulo: "Sección de Contacto", 
+                        desc: "Instalación y administración de redes.", 
+                        img: "img/soft/web/mi-portafolio/porta-contacto.jpg", 
+                        urlSeccion: "https://rolandfrak.github.io/Blog", 
+                        tags: ["HTML5", "CSS", "JS", "Responsive"], 
+                        deshabilitado: true 
+                        }
+                    ]
+                },
+                
+                
+                "mi-blog": {
+                    titulo: "Mi Blog Soporte TI",
+                    organizacion: "Tec Roland Ruiz.",
+                    general: "Mi Primera Página web sitio orientado a conocimientos informáticos.",
+                    detallada: "Desarrollada para posicionar la marca en internet. Cuenta con un cotizador interactivo.",
+                    urlWeb: "https://rolandfrak.github.io/Blog",
+                    items: [
+                        { 
+                        titulo: "Página de Inicio", 
+                        desc: "Diseño premium de bienvenida.", 
+                        img: "img/soft/web/mi-blog/blog-inicio.png", 
+                        urlSeccion: "https://rolandfrak.github.io/Blog", 
+                        tags: ["HTML5", "CSS", "JS", "Responsive"] 
+                        },
+                        
+                        { 
+                        titulo: "Soporte a PCs", 
+                        desc: "Mantenimiento, ensamble y reparación de PCs.", 
+                        img: "img/soft/web/mi-blog/blog-pc.png",
+                        urlSeccion: "https://rolandfrak.github.io/Blog", 
+                        tags: ["HTML5", "CSS", "JS", "Responsive"],
+                        deshabilitado: true 
+                        },
+                        
+                        { 
+                        titulo: "Soporte a Software", 
+                        desc: "Esta sección guarda todos los manuales para el soporte de software.", 
+                        img: "img/soft/web/mi-blog/blog-software.png", tags: ["HTML5", "CSS", "JS", "Responsive"],
+                        deshabilitado: true 
+                        },
+                        
+                        { 
+                        titulo: "Soporte a Periféricos", 
+                        desc: "Soporte a Periféricos como Impresoras, teclados, Proyectores.", 
+                        img: "img/soft/web/mi-blog/blog-perifericos.png", 
+                        urlSeccion: "https://rolandfrak.github.io/Blog", 
+                        tags: ["HTML5", "CSS", "JS", "Responsive"] ,
+                        deshabilitado: true 
+                        },
+                        
+                        { 
+                          titulo: "Soporte a Servidores", 
+                          desc: "Sección de soporte a servidores almacena manuales de la correcta instalación y administración a servidores.", 
+                          img: "img/soft/web/mi-blog/blog-servidores.png", 
+                          urlSeccion: "https://rolandfrak.github.io/Blog", 
+                          tags: ["HTML5", "CSS", "JS", "Responsive"],
+                          deshabilitado: true 
+                        },
+                        
+                        { 
+                        titulo: "Soporte a Redes", 
+                        desc: "Instalación y administración de redes.", 
+                        img: "img/soft/web/mi-blog/blog-redes.png", 
+                        urlSeccion: "https://rolandfrak.github.io/Blog", 
+                        tags: ["HTML5", "CSS", "JS", "Responsive"], 
+                        deshabilitado: true 
+                        }
+                    ]
+                },
+                
+                "mi-portafolio": {
+                    titulo: "Mi Portafolio Soporte TI",
+                    organizacion: "Tec Roland Ruiz.",
+                    general: "Mi portafolio de proyectos realizados en el área de Desarrollo de software en entornos locales y Webs y proyectos de diseño gráfico.",
+                    detallada: "Está sección está en mantenimiento y/o desarrollo ⚙️ 🛠️, le pedimos sea paciente en la espera puede explorar otros proyectos 🧰.",
+                    urlWeb: "https://rolandfrak.github.io/Blog",
+                    
+            deshabilitado: true,
+                    items: [
+                        { 
+                        titulo: "Página de Inicio", 
+                        desc: "Diseño premium de bienvenida.", 
+                        img: "img/soft/web/mi-porta/porta-inicio.png", 
+                        urlSeccion: "https://rolandfrak.github.io/Blog", 
+                        tags: ["HTML5", "CSS", "JS", "Responsive"], 
+                        deshabilitado: true
+                        }
+                        ]
+                     },
+                
+"design-ruiz": {
+                    titulo: "Identidad Visual DESIGN RUIZ",
+                    organizacion: "DESIGN RUIZ",
+                    general: "Construcción simétrica de logotipo de tecnología enfocado en branding minimalista moderno.",
+                    detallada: "Desarrollo estructurado utilizando retículas geométricas para balancear el isotipo del ave con la tipografía principal. El diseño final transmite dinamismo, innovación tecnológica y limpieza corporativa, ideal para aplicaciones móviles y plataformas web.",
+                    items: [
+                        { 
+                          titulo: "Logo Design Ruiz", 
+                          desc: "logo principal de la marca", 
+                          img: "img/dis/design/logo-design.png", 
+                          tags: ["Corel Draw", "Logo", "Vectores"] 
+                        },
+                         
+                        { 
+                          titulo: "Portada para Facebook, WhatsApp Business", 
+                          desc: "Portada ideal para redes sociales como facebook y WhatsApp Business", 
+                          img: "img/dis/design/portada-design.jpg", 
+                          tags: ["Corel Draw", "Portada", "UI/UX"] 
+                        },
+                        
+                        {
+                        titulo: "Portada para Redes", 
+                        desc: "Portada ideal para redes sociales como facebook y WhatsApp Business", 
+                          img: "img/dis/design/portada2-design.jpg", 
+                          tags: ["Canva", "Portada", "UI/UX"] 
+                        },
+                          
+                        { 
+                          titulo: "Poster Publicitario", 
+                          desc: "Poster Publicitario ideal para publicar a redes sociales como facebook, Instagram, WhatsApp entre otros", 
+                          img: "img/dis/design/POSTER-1.png", 
+                          tags: ["Corel Draw", "Poster", "UI/UX"] 
+                        },
+                        
+                        { 
+                          titulo: "Poster Publicitario", 
+                          desc: "Poster Publicitario ideal para publicar a redes sociales como facebook, Instagram, WhatsApp entre otros", 
+                          img: "img/dis/design/POSTER-2.png", 
+                          tags: ["Corel Draw", "Poster", "UI/UX"] 
+                        },
+                          
+                        { 
+                          titulo: "Poster Publicitario", 
+                          desc: "Poster Publicitario ideal para publicar a redes sociales como facebook, Instagram, WhatsApp entre otros", 
+                          img: "img/dis/design/POSTER-3.png", 
+                          tags: ["Corel Draw", "Poster", "UI/UX"] 
+                        },
+                        ,
+                          
+                        { 
+                          titulo: "Poster Publicitario", 
+                          desc: "Poster Publicitario ideal para publicar a redes sociales como facebook, Instagram, WhatsApp entre otros", 
+                          img: "img/dis/design/POSTER-4.png", 
+                          tags: ["Corel Draw", "Poster", "UI/UX"] 
+                        },
+                        
+                        { 
+                          titulo: "Fiesta Halloween 🎃", 
+                          desc: "Banner Publicitario alusivo a la festividad halloween ideal para publicar a redes sociales como facebook, Instagram, WhatsApp entre otros", 
+                          img: "img/dis/design/halloween-design.jpg", 
+                          tags: ["Corel Draw", "Banner", "UI/UX"] 
+                          },
+                          
+                          { 
+                          titulo: "Fiestas Patrias🇵🇪", 
+                          desc: "Banner Publicitario alusivo a fiestas patrias ideal para publicar a redes sociales como facebook, Instagram, WhatsApp entre otros", 
+                          img: "img/dis/design/patrias-design.jpg", 
+                          tags: ["Canva", "Banner", "UI/UX"] 
+                          }
+                        
+                    ]
+                    
+                },
+                
+                "dj-chawis": 
+                {
+                    titulo: "Dj Chawis - La Nueva Era",
+                    organizacion: "Dj Chawis",
+                    general: "Diseño publicitario con efectos neón de alto impacto para equipamiento de sonido profesional.",
+                    detallada: "Conceptualización de piezas visuales modernas destinadas a la promoción de eventos y displays de equipos de audio. El proyecto destaca por su manejo avanzado de iluminación digital, contrastes saturados y tipografías personalizadas que imponen presencia de marca.",
+                    items: [
+                        { 
+                        titulo: "Logo DJ CHAWIS", 
+                        desc: "Efectos de iluminación y montaje digital de alta fidelidad.", 
+                        img: "img/dis/djchawis/logo-djchawis.png", 
+                        tags: ["Gemini", "Logo","IA", "Vectores"] 
+                        },
+                        
+                        { 
+                        titulo: "Noche Electro", 
+                        desc: "Banner publicitario adaptado para optimizar canales digitales y móviles.", 
+                        img: "img/dis/djchawis/electro-djchawis.jpg", 
+                        tags: ["Gemini", "Logo","IA", "Banner"] 
+                        
+                        },
+                        
+                        { 
+                        titulo: "Fiesta Nocturna", 
+                        desc: "Banner publicitario adaptado para optimizar canales digitales y móviles.", 
+                        img: "img/dis/djchawis/fiesta-djchawis.jpg", 
+                        tags: ["Gemini", "Logo","IA", "Banner"] 
+                        
+                        },
+                        
+                        { 
+                        titulo: "Versus Electro", 
+                        desc: "Banner publicitario adaptado para optimizar canales digitales y móviles.", 
+                        img: "img/dis/djchawis/electrovs-djchawis.jpg", 
+                        tags: ["Gemini", "Logo","IA", "Banner"] 
+                        
+                        }
+                        
+                    ]
+                    },
+                    
+                    "ciber-hawk": 
+                {
+                    titulo: "Ciber Hawk - Rápido Como un Halcon",
+                    organizacion: "Ciber Hawk",
+                    general: "Diseño publicitario con efectos neón de alto impacto para equipamiento de sonido profesional.",
+                    detallada: "Conceptualización de piezas visuales modernas destinadas a la promoción de eventos y displays de equipos de audio. El proyecto destaca por su manejo avanzado de iluminación digital, contrastes saturados y tipografías personalizadas que imponen presencia de marca.",
+                   
+                items: [
+                        { 
+                        titulo: "Logo Ciber Hawk", 
+                        desc: "Imgene Empresarial de la marca, logo vectorial Inspirado en el flujo de internet mundial y nombre de la marca Halcon", 
+                        img: "img/dis/ciber-hawk/hawk-logo.png", 
+                        tags: ["Inskaspe", "Logo", "Vectores"] 
+                        },
+                        
+                        { 
+                        titulo: "Anuncio Publicitario", 
+                        desc: "Banner publicitario adaptado para optimizar canales digitales y móviles.", 
+                        img: "img/dis/ciber-hawk/hawk-anuncio.jpg", 
+                        tags: ["Inskaspe" ,"UI/UX", "Banner"] 
+                        
+                        },
+                        
+                        { 
+                        titulo: "Infografía Informativa", 
+                        desc: "Banner publicitario adaptado para optimizar canales digitales y móviles.", 
+                        img: "img/dis/ciber-hawk/hawk-infografia.jpg", 
+                        tags: ["Canva" ,"UI/UX", "Banner"] 
+                        
+                        },
+                        
+                        { 
+                        titulo: "Anuncio de Paquetes", 
+                        desc: "Banner publicitario adaptado para optimizar canales digitales y móviles.", 
+                        img: "img/dis/ciber-hawk/hawk-planes.jpg", 
+                        tags: ["Inskaspe" ,"UI/UX", "Banner"] 
+                        
+                        },
+                        
+                                             { 
+                        titulo: "Anuncio Publicitario", 
+                        desc: "Efectos de iluminación y montaje digital de alta fidelidad.", 
+                        img: "img/dis/ciber-hawk/hawk-promo1.jpg", 
+                        tags: ["Inskaspe" ,"UI/UX", "Banner"]  
+                        },
+                        
+                        { 
+                        titulo: "Anuncio de Sorteo Movil", 
+                        desc: "Banner publicitario adaptado para optimizar canales digitales y móviles.", 
+                        img: "img/dis/ciber-hawk/hawk-sorteo.jpg", 
+                        tags: ["Inskaspe" ,"UI/UX", "Banner"]  
+                        
+                        },
+                        
+                        { 
+                        titulo: "Anuncio Publicitario", 
+                        desc: "Banner publicitario adaptado para optimizar canales digitales y móviles.", 
+                        img: "img/dis/ciber-hawk/hawk-promo2.jpg", 
+                        tags: ["Inskaspe" ,"UI/UX", "Banner"] 
+                        
+                        }
+                        
+                    ]
+                    
+                },
+                
+           "tec-r-ruiz": 
+                {
+                    titulo: "Tec Ruiz",
+                    organizacion: "Roland Frack Ruiz Ortiz",
+                    general: "Diseño utilizados para el desarrollo de diseño del sitio web Tec Ruiz, Blog y Portafolio.",
+                    detallada: "Conceptualización de piezas visuales modernas destinadas a al desarrollo y puesta de diseño para el sitio web en general. El proyecto destaca por su manejo avanzado de iluminación digital, contrastes saturados y tipografías personalizadas que imponen presencia de marca.",
+                    items: [
+                        { 
+                        titulo: "Logo Tec Ruiz", 
+                        desc: "Efectos de iluminación y montaje digital de alta fidelidad.", 
+                        img: "img/logo.png", 
+                        tags: ["Gemini", "Logo","IA", "Vectores"] 
+                        },
+                        
+                        { 
+                        titulo: "Avatar Roland Ruiz", 
+                        desc: "Efectos de iluminación y montaje digital de alta fidelidad.", 
+                        img: "img/dis/tec-ruiz/avatar.jpg", 
+                        tags: ["Gemini", "Logo","IA", "Vectores"] 
+                        },
+                        
+                        { 
+                        titulo: "Imagen No Encontrada", 
+                        desc: "Elemento visual para avisar al navegante que la imagen que se desea mostrar no se encuentra en el servidor o está dañada", 
+                        img: "img/dis/tec-ruiz/error-imagen.jpg", 
+                        tags: ["Canva", "Error"] 
+                        
+                        },
+                        
+                        { 
+                        titulo: "Fondo Tec Ruiz", 
+                        desc: "Fondo principal de la sección inicio del sitio Tec Ruiz", 
+                        img: "img/dis/tec-ruiz/hero-tecruiz.jpg", 
+                        tags: ["Gemini","IA", "Fondo","UI/UX"] 
+                        
+                        },
+                        
+                        { 
+                        titulo: "Fondo Portafolio", 
+                        desc: "Fondo principal de la sección inicio del Portafolio.",
+                        img: "img/dis/tec-ruiz/hero-portafolio.jpg", 
+                        tags: ["Gemini","IA", "Fondo","UI/UX"] 
+                        
+                        } ,
+                        
+                        { 
+                        titulo: "Fondo Blog", 
+                        desc: "Fondo principal de la sección inicio del Blog.",
+                        img: "img/dis/tec-ruiz/hero-blog.jpg", 
+                        tags: ["Gemini","IA", "Fondo","UI/UX"] 
+                        
+                        }
+                        
+                    ]
+                    },
+                
+                
+            };
+
+            const params = new URLSearchParams(window.location.search);
+            const type = params.get("type");
+            const projectId = params.get("project");
+            const data = galleryData[projectId];
+
+            if (!data) return;
+
+            // 1. Pintar Carta Informativa Inicial
+            const infoContainer = document.getElementById("info-card-container");
+            let actionBtnHtml = '';
+            if(type === 'web') {
+                actionBtnHtml = `<div class="info-action-bar"><a href="${data.urlWeb}" target="_blank" class="btn-card primary-btn btn-inline"><i class="fa-solid fa-earth-americas"></i> Visitar Sitio Web Vivo</a></div>`;
+            }
+            
+            infoContainer.innerHTML = `
+                <div class="project-info-card">
+                    <h1 class="info-title">${data.titulo}</h1>
+                    <span class="info-org"><i class="fa-solid fa-id-card-clip"></i> ${data.organizacion}</span>
+                    <p class="info-general">${data.general}</p>
+                    <p class="info-detailed">${data.detallada}</p>
+                    ${actionBtnHtml}
+                </div>
+            `;
+
+            // 2. Pintar las tarjetas de la galería según su tipo y estado
+            const grid = document.getElementById("gallery-grid");
+            data.items.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "portfolio-card";
+
+                if (type === "web") {
+                    let botonHTML = '';
+
+                    // Evaluamos si el item viene configurado como deshabilitado
+                    if (item.deshabilitado) {
+                        botonHTML = `
+                            <button class="btn-card disabled-btn" onclick="alert('Función Deshabilitada por el administrador.')">
+                                <i class="fa-solid fa-ban"></i> Función Deshabilitada
+                            </button>
+                        `;
+                    } else {
+                        botonHTML = `
+                            <a href="${item.urlSeccion}" target="_blank" class="btn-card primary-btn">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Sección Real
+                            </a>
+                        `;
+                    }
+
+                    card.innerHTML = `
+                        <div class="card-image-scroll-box">
+                            <img src="${item.img}" alt="${item.titulo}">
+                        </div>
+                        <div class="card-body">
+                            <div class="tag-container">${item.tags.map(t=>`<span class="tech-tag">${t}</span>`).join('')}</div>
+                            <h3 class="card-title">${item.titulo}</h3>
+                            <p class="card-desc">${item.desc}</p>
+                            <div class="card-actions">
+                                ${botonHTML}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Flujo por defecto para locales o diseño (Apertura de Lightbox)
+                    card.innerHTML = `
+                        <div class="card-image-box" style="cursor:pointer;">
+                            <img src="${item.img}" alt="${item.titulo}" class="lightbox-trigger">
+                        </div>
+                        <div class="card-body">
+                            <div class="tag-container">${item.tags ? item.tags.map(t=>`<span class="tech-tag">${t}</span>`).join('') : `<span class="tech-tag tool">Arte</span>`}</div>
+                            <h3 class="card-title">${item.titulo}</h3>
+                            <p class="card-desc">${item.desc}</p>
+                            <div class="card-actions">
+                                <button class="btn-card primary-btn lightbox-btn-action">
+                                    <i class="fa-solid fa-expand"></i> Ver Tamaño Real
+                                </button>
+                            </div>
+                        </div>
+                    `;
+
+                    const openLightbox = () => {
+                        const lb = document.getElementById("portfolio-lightbox");
+                        document.getElementById("lightbox-img").src = item.img;
+                        document.getElementById("lightbox-caption").innerText = item.titulo + " - " + item.desc;
+                        lb.classList.add("active");
+                    };
+                    card.querySelector(".card-image-box").addEventListener("click", openLightbox);
+                    card.querySelector(".lightbox-btn-action").addEventListener("click", openLightbox);
+                }
+                grid.appendChild(card);
+            });
+        });
+    </script>
+    
+    <script src="js/js-cabeza.js"></script>
+</body>
+</html>

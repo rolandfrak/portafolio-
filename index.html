@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Roland Ruiz</title>
+    <link rel="stylesheet" href="css/css-cabeza.css">
+    <link rel="stylesheet" href="css/css-portafolio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="cabeza"></div>
+
+    <section class="portfolio-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-subtitle">MIS PROYECTOS MÁS DESTACADOS</span>
+                <h1 class="hero-title">PORTAFOLIO</h1>
+                <p class="hero-description">
+                    Donde la lógica de la programación se fusiona perfectamente con la estética del diseño visual. Explore mis creaciones de software local, desarrollo web moderno e identidades gráficas.
+                </p>
+            </div>
+            
+        </div>
+    </section>
+
+    <nav class="portfolio-nav">
+        <div class="main-filters">
+            <button class="filter-btn active" data-category="software">
+                <i class="fa-solid fa-code"></i> SOFTWARE
+            </button>
+            <button class="filter-btn" data-category="diseno">
+                <i class="fa-solid fa-palette"></i> DISEÑO
+            </button>
+        </div>
+
+        <div class="sub-filters" id="software-subs">
+            <button class="sub-filter-btn active" data-subcategory="local">
+                <i class="fa-solid fa-laptop-code"></i> Software Local
+            </button>
+            <button class="sub-filter-btn" data-subcategory="web">
+                <i class="fa-solid fa-globe"></i> Desarrollo Web
+            </button>
+        </div>
+    </nav>
+
+    <main class="portfolio-container">
+        <div id="dynamic-portfolio-grid" class="portfolio-grid">
+            </div>
+    </main>
+
+    <div id="portfolio-lightbox" class="lightbox">
+        <button class="lightbox-close" id="close-lightbox">&times;</button>
+        <div class="lightbox-content-wrapper">
+            <img id="lightbox-img" src="" alt="Vista en tamaño real">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <div id="pie"></div>
+
+    <script src="js/js-cabeza.js"></script>
+    
+    
+ <!-- 
+    <script src="js/js-select-software.js"></script>
+    <script src="js/js-select-diseño.js"></script>
+     -->
+   <script src="js/js-portafolio.js"></script>
+   
+</body>
+</html>
