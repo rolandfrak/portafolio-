@@ -1,0 +1,436 @@
+/* ==========================================================================
+   HOJA DE ESTILOS PROFESIONAL: PORTAFOLIO ROLAND RUIZ
+   ========================================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #070b19;
+    --primary: #3b82f6;
+    --primary-glow: rgba(59, 130, 246, 0.5);
+    --accent-purple: #a855f7;
+    --text-white: #ffffff;
+    --text-muted: #94a3b8;
+    --card-bg: #111827;
+    --card-border: #1e293b;
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+     
+}
+
+/* --- ESTILOS DEL HERO PREMIUM --- */
+.portfolio-hero {
+    position: relative;
+    width: 100%;
+    min-height: 550px;
+    padding: 60px 20px;
+    background-image: linear-gradient(135deg, rgba(7, 11, 25, 0.85) 40%, rgba(168, 85, 247, 0.15) 100%), 
+                      url('../img/fondo-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    
+    /* CAMBIO: Usamos Flexbox para asegurar el centrado vertical completo */
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    margin-top: 80px; /* Respeta el menú superior fijo */
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    
+    /* CAMBIO: Alinea el contenido interno al centro del contenedor */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {
+    /* CAMBIO: Eliminamos los comportamientos antiguos de tipo tabla */
+    display: block; 
+    width: 100%;
+    max-width: 750px; /* Limita el ancho de lectura para que no se estire demasiado */
+    text-align: center; /* Centra los textos (título, subtítulo y descripción) */
+    padding-right: 0; /* Quitamos el espacio de la derecha para una simetría perfecta */
+}
+
+
+.hero-subtitle {
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.hero-title {
+    font-size: 36pt;
+    font-weight: 900;
+    margin: 0 0 15px 0;
+    letter-spacing: -1px;
+    background: linear-gradient(to right, var(--text-white), var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+    max-width: 650px;
+}
+
+/* --- SUBMENÚ DE FILTROS --- */
+.portfolio-nav {
+    max-width: 1200px;
+    margin: 40px auto 20px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.main-filters {
+    display: inline-block;
+    background: rgba(30, 41, 59, 0.5);
+    padding: 6px;
+    border-radius: 30px;
+    border: 1px solid var(--card-border);
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 10px 28px;
+    font-size: 11pt;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: var(--transition-smooth);
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: var(--text-white);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.sub-filters {
+    display: block;
+    opacity: 1;
+    height: auto;
+    transition: var(--transition-smooth);
+}
+
+.sub-filters.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.sub-filter-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 8px 18px;
+    margin: 0 8px;
+    font-size: 10pt;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.sub-filter-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-purple);
+    transition: var(--transition-smooth);
+    transform: translateX(-50%);
+}
+
+.sub-filter-btn.active {
+    color: var(--text-white);
+}
+
+.sub-filter-btn.active::after {
+    width: 80%;
+}
+
+/* --- REJILLA Y COMPORTAMIENTO DE TARJETAS (CSS GRID) --- */
+.portfolio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+}
+
+.portfolio-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    display: block;
+    position: relative;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Contenedor de la imagen estática básica */
+.card-image-box {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+    background: #0f172a;
+}
+
+.card-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.portfolio-card:hover .card-image-box img {
+    transform: scale(1.05);
+}
+
+/* EFECTO ESPECTACULAR: SCROLL VERTICAL PARA CAPTURAS WEB LARGAS */
+.card-image-scroll-box {
+    width: 100%;
+    height: 240px; /* Altura fija controlada */
+    overflow: hidden;
+    position: relative;
+    background: #0f172a;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.card-image-scroll-box img {
+    width: 100%;
+    height: auto; /* Permite que la imagen larga mantenga su proporción */
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 4s ease-in-out; /* Deslizamiento suave controlado */
+}
+
+/* Al pasar el cursor por la tarjeta, la imagen se traslada perfectamente al final de su cuerpo */
+.portfolio-card:hover .card-image-scroll-box img {
+    transform: translateY(calc(-100% + 240px));
+}
+
+/* --- DETALLES E INFORMACIÓN INTERNA DEL CARD --- */
+.card-body {
+    padding: 24px;
+}
+
+.tag-container {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.tech-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 8pt;
+    font-weight: 700;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary);
+    border-radius: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tech-tag.tool {
+    background: rgba(168, 85, 247, 0.1);
+    color: var(--accent-purple);
+}
+
+.card-title {
+    font-size: 14pt;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: var(--text-white);
+}
+
+.card-desc {
+    font-size: 10pt;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+    height: 45px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* CONTENEDOR DE BOTONES DE ACCIÓN */
+.card-actions {
+    display: block;
+    width: 100%;
+}
+
+.btn-card {
+    display: inline-block;
+    padding: 10px 16px;
+    font-size: 9.5pt;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+.btn-card.primary-btn {
+    background: var(--primary);
+    color: var(--text-white);
+    border: none;
+}
+
+.btn-card.primary-btn:hover {
+    background: #2563eb;
+}
+
+/* Soporte para tarjetas con doble botón (Módulos Web) */
+.dual-actions {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.action-cell {
+    display: table-cell;
+    padding: 0 5px;
+}
+
+.action-cell:first-child { padding-left: 0; }
+.action-cell:last-child { padding-right: 0; }
+
+.btn-card.secondary-btn {
+    background: transparent;
+    color: var(--text-white);
+    border: 1px solid var(--card-border);
+}
+
+.btn-card.secondary-btn:hover {
+    background: var(--card-border);
+}
+
+/* --- CAPA MODAL: LIGHTBOX EN TAMAÑO REAL --- */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(7, 11, 25, 0.95);
+    z-index: 9999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    overflow-y: auto;
+    padding: 40px 20px;
+}
+
+.lightbox.active {
+    display: block;
+    opacity: 1;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    font-size: 35pt;
+    color: var(--text-white);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+    transition: var(--transition-smooth);
+}
+
+.lightbox-close:hover {
+    color: var(--primary);
+}
+
+.lightbox-content-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.lightbox-content-wrapper img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+}
+
+.lightbox-caption {
+    margin-top: 20px;
+    font-size: 13pt;
+    color: var(--text-white);
+    font-weight: 600;
+}
+
+/* --- ADAPTACIÓN COMPLETA (RESPONSIVE) --- */
+@media (max-width: 992px) {
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .portfolio-hero {
+        text-align: center;
+        padding: 40px 15px;
+              
+              background-position: 85% center; 
+        
+    }
+    .hero-container, .hero-content, .hero-avatar {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 0;
+    }
+    .hero-avatar { margin-top: 30px; }
+    .avatar-wrapper { width: 240px; height: 240px; }
+    .hero-title { font-size: 28pt; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .sub-filter-btn { margin: 5px 4px; display: inline-block; }
+}

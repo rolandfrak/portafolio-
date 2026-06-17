@@ -1,0 +1,379 @@
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:80px;
+    background:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+    z-index:9999;
+}
+
+.menu-left,
+.menu-right{
+    display:flex;
+    list-style:none;
+    gap:30px;
+    margin:0;
+    padding:0;
+}
+
+.menu-left a,
+.menu-right a{
+    text-decoration:none;
+    color:#333;
+    font-weight:600;
+    transition:.3s;
+}
+
+.menu-left a:hover,
+.menu-right a:hover,
+.activo{
+    color:#146EA6;
+}
+
+.logo-area{
+    margin:0 40px;
+}
+
+.logo-area img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:50%;
+}
+
+.menu-mobile{
+    display:none;
+}
+
+/* MÓVIL */
+
+@media(max-width:768px){
+
+    .navbar{
+        justify-content:space-between;
+        padding:0 20px;
+    }
+
+    .menu-mobile{
+        display:block;
+        border:none;
+        background:none;
+        font-size:30px;
+        cursor:pointer;
+    }
+
+    /* 1. Estilos compartidos por ambas listas */
+    .menu-left,
+    .menu-right{
+        position:fixed;
+        left:-100%;
+        width:100%;
+        background:white;
+        flex-direction:column;
+        gap:0;
+        transition:.3s;
+        z-index: 999; /* Asegura que estén sobre el contenido */
+    }
+
+    /* 2. POSICIONAMIENTO EN CASCADA (Evita que se tapen) */
+    .menu-left {
+        top: 80px; /* Empieza justo abajo de la barra principal */
+    }
+
+    .menu-right {
+        /* Se calcula sumando los 80px del navbar + la altura de los 3 elementos de arriba */
+        /* Cada enlace mide aproximadamente 57px (18px padding vertical * 2 + texto) */
+        top: 251px; 
+    }
+
+    .menu-left.open,
+    .menu-right.open{
+        left:0;
+    }
+
+    .menu-left li,
+    .menu-right li{
+        border-bottom:1px solid #eee;
+    }
+
+    .menu-left a,
+    .menu-right a{
+        display:block;
+        padding:18px;
+        text-align:center;
+    }
+
+    /* Corrección del logo-area que vimos antes */
+    .logo-area{
+        margin: 40px; /* Ajustado para que no empuje en móvil */
+    }
+    
+    .logo-area img{
+        border-radius: 10%;
+    }
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA (FOOTER ESTILO PREMIUM DE REFERENCIA)
+   ========================================================================== */
+
+.main-footer {
+    background-color: #0f172a; /* Fondo oscuro moderno */
+    color: #f8fafc;
+    padding: 80px 0 30px 0;
+    font-family: 'Segoe UI', sans-serif;
+    border-top: 1px solid #1e293b;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr 1fr; /* Tres columnas asimétricas */
+    gap: 60px;
+}
+
+/* COLUMNA BRAND (LOGO Y DECLARACIÓN) */
+.footer-brand-side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-logo-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+.footer-title-text h5 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.footer-title-text span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 2px;
+}
+
+.footer-statement {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin: 0;
+    max-width: 480px;
+     
+}
+
+/* SUBTÍTULOS DE COLUMNAS */
+.footer-sub {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 24px 0;
+    position: relative;
+}
+
+/* ENLACES RÁPIDOS */
+.footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-menu a {
+    text-decoration: none;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    transition: color 0.25s ease, transform 0.25s ease;
+    display: inline-block;
+}
+
+.footer-menu a:hover {
+    color: var(--primary-color);
+    transform: translateX(4px);
+}
+
+/* SECCIÓN SOCIALES */
+.footer-social-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-social-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #94a3b8;
+    margin: 0 0 20px 0;
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #1e293b;
+    color: #94a3b8;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    border: 1px solid #334155;
+}
+
+.social-icon:hover {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(20, 110, 166, 0.2);
+}
+
+/* BARRA INFERIOR DE CRÉDITOS */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 60px auto 0 auto;
+    padding: 25px 20px 0 20px;
+    border-top: 1px solid #1e293b;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE - APILADO EN DISPOSITIVOS MÓVILES
+   ========================================================================== */
+@media (max-width: 992px) {
+    .main-footer {
+        padding: 60px 0 30px 0;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr; /* Columna única en móviles */
+        gap: 40px;
+    }
+
+    .footer-sub {
+        margin-bottom: 16px;
+    }
+
+    .footer-bottom {
+        margin-top: 40px;
+    }
+}
+
+
+
+
+
+
+/* ==========================================================================
+   DISEÑO DE AVATAR CIRCULAR CON BADGE DE LIKE SUPERPUESTO
+   ========================================================================== */
+
+/* Alineación de la foto y el texto del statement */
+.footer-profile-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 15px;
+}
+
+/* Contenedor relativo para poder clavar el Like encima */
+.footer-avatar-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0; /* Evita que se deforme el círculo */
+}
+
+/* Imagen de perfil 100% Circular */
+.footer-profile-circle {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1.5px solid #3b82f6; /* Borde azul neón sutil */
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+    display: block;
+}
+
+/* Círculo del Like superpuesto en la esquina inferior derecha */
+.badge-like-circle {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 45px;
+    height: 45px;
+    background-color: #3b82f6; /* Fondo azul */
+    color: #ffffff;            /* Ícono blanco */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #0f172a; /* Borde del mismo color del fondo del footer para dar separación limpia */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* Micro-interacción interactiva al pasar el cursor sobre el conjunto */
+.footer-avatar-container:hover .footer-profile-circle {
+    border-color: #a855f7; /* Cambia a morado el borde */
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.footer-avatar-container:hover .badge-like-circle {
+    background-color: #a855f7; /* El badge también reacciona al hover */
+    transform: scale(1.1);
+}
+
+/* Ajuste fino del texto lateral */
+.footer-statement {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin: 0;
+}
+
+/* Adaptación responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .footer-profile-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    .footer-avatar-container {
+        margin: 0 auto;
+    }
+}
