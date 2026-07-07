@@ -290,6 +290,7 @@
                     ]
                 },
                 
+                
                 "mi-portafolio": {
                     titulo: "Mi Portafolio Soporte TI",
                     organizacion: "Tec Roland Ruiz.",
@@ -309,8 +310,117 @@
                         }
                         ]
                      },
+                     
+                     
+                     "asist-pro": {
+                    titulo: "Asist-Pro",
+                    organizacion: "Tec Roland Ruiz.",
+                    general: "Sistema web para el registro de asistencia de personal o empleado en ideal para entorno entorno Web y local, disponible para PC y Móvil..",
+                    detallada: "Este sistema registra automáticamente el ingreso y salida del empleado tomando la hora de marcaje, horas extra estado de asistencia (asistió, tardanza,falta y horas extra) según la hora de marcaje",
+                    urlWeb: "",
+                    
+            deshabilitado: true,
+                    items: [
+                        { 
+                        titulo: "Registro de Asistencia", 
+                        desc: "Página donde el Empleado realiza el Marcaje de entrada y salida.", 
+                        img: "img/soft/web/asist-pro/asist-marcar.png", 
+                        urlSeccion: "", 
+                        tags: ["HTML-CSS-JS","PHP","MySql", "Responsive"], 
+                        deshabilitado: true
+                        }, 
+                         { 
+                        titulo: "Registro de Areas", 
+                        desc: "En este apartado el administrador con acceso podrá agregar, modificar eliminar nuevas áreas.", 
+                        img: "img/soft/web/asist-pro/asist-areas.png", 
+                        urlSeccion: "", 
+                        tags: ["HTML-CSS-JS","PHP","MySql", "Responsive"],  
+                        deshabilitado: true
+                        }, 
+                         { 
+                        titulo: "Registro de Cargos", 
+                        desc: "En este apartado el administrador con acceso podrá agregar, modificar eliminar nuevas áreas cargos.", 
+                        img: "img/soft/web/asist-pro/asist-cargos.png", 
+                        urlSeccion: "", 
+                        tags: ["HTML-CSS-JS","PHP","MySql", "Responsive"],  
+                        deshabilitado: true
+                        }, 
+                         { 
+                        titulo: "Registro de Permisos", 
+                        desc: "En este registro el administrador con acceso podrá asignar o modificar permisos de acceso al sistema al empleado según sus cargos en la empresa.", 
+                        img: "img/soft/web/asist-pro/asist-permisos.png", 
+                        urlSeccion: "", 
+                        tags: ["HTML-CSS-JS","PHP","MySql", "Responsive"],  
+                        deshabilitado: true
+                        }, 
+                         { 
+                        titulo: "Registro de Empleados", 
+                        desc: "En este apartado el administrador con acceso podrá agregar, modificar eliminar nuevas empleados asignarles y cargo y el área al que pertenece.", 
+                        img: "img/soft/web/asist-pro/asist-empleados.png", 
+                        urlSeccion: "", 
+                        tags: ["HTML-CSS-JS","PHP","MySql", "Responsive"],  
+                        deshabilitado: true
+                        }, 
+                         { 
+                        titulo: "Registro de Contratos", 
+                        desc: "Aki el administrador crears el contrato del empleado asignado un sueldo, tiempo de trabajo etc.", 
+                        img: "img/soft/web/asist-pro/asist-contratos.png", 
+                        urlSeccion: "", 
+                        tags: ["HTML-CSS-JS","PHP","MySql", "Responsive"],  
+                        deshabilitado: true
+                        }, 
+                         { 
+                        titulo: "Administración de Asistencia", 
+                        desc: "En este apartado el administrador tendrá a bien la posibilidad de gestionar de manera avanzada en registro de asistencia, en la que puede ingresar, buscar, actualizar y eliminar registros..", 
+                        img: "img/soft/web/asist-pro/asist-asistencia.png", 
+                        urlSeccion: "", 
+                        tags: ["HTML-CSS-JS","PHP","MySql", "Responsive"],  
+                        deshabilitado: true
+                        }, 
+                         { 
+                        titulo: "Ficha del Empleado", 
+                        desc: "Está es una vista avanzada donde imprime una ficha maestra con todos los datos del Empleado incluyendo sus asistencias.", 
+                        img: "img/soft/web/asist-pro/asist-ficha.png", 
+                        urlSeccion: "", 
+                        tags: ["HTML-CSS-JS","PHP","MySql", "Responsive"],  
+                        deshabilitado: true
+                        }
+                         , 
+                         { 
+                        titulo: "Analítica Avanzada", 
+                        desc: "Está sería la sección de reporte de asistencia, dónde el administrador puede ver el historial de asistencia del personal así como resumen de falta, tardanzas y horas extra del personal.", 
+                        img: "img/soft/web/asist-pro/asist-reporte.png", 
+                        urlSeccion: "", 
+                        tags: ["HTML-CSS-JS","PHP","MySql", "Responsive"],  
+                        deshabilitado: true
+                        }, 
+                         { 
+                        titulo: "Inicio De sesión", 
+                        desc: "Login / formulario de inicio de sesión, que permite al empleado ingresar al sistema administrativo cun su usuario y contraseña.", 
+                        img: "img/soft/web/asist-pro/asist-login.png", 
+                        urlSeccion: "", 
+                        tags: ["HTML-CSS-JS","PHP","MySql", "Responsive"],  
+                        deshabilitado: true
+                        }
+                        , 
+                         { 
+                        titulo: "Sistema con Usuario Logeado", 
+                        desc: "Ingreso a sistema con usuario Logeado, aplicando configuración, permisos de acceso en este caso permisos para Personal de Recursos Humanos.", 
+                        img: "img/soft/web/asist-pro/asist-logeo.png", 
+                        urlSeccion: "", 
+                        tags: ["HTML-CSS-JS","PHP","MySql", "Responsive"],  
+                        deshabilitado: true
+                        }
+                         
+                         
+                         
+                         
+                        
+                       
+                        ]
+                     },
                 
-"design-ruiz": {
+            "design-ruiz": {
                     titulo: "Identidad Visual DESIGN RUIZ",
                     organizacion: "DESIGN RUIZ",
                     general: "Línea completa de branding, diseño publicitario y maquetación visual para marcas digitales.",
@@ -527,21 +637,39 @@
             if (!data) return;
 
             // 1. Pintar Carta Informativa Inicial
-            const infoContainer = document.getElementById("info-card-container");
-            let actionBtnHtml = '';
-            if(type === 'web') {
-                actionBtnHtml = `<div class="info-action-bar"><a href="${data.urlWeb}" target="_blank" class="btn-card primary-btn btn-inline"><i class="fa-solid fa-earth-americas"></i> Visitar Sitio Web Vivo</a></div>`;
-            }
-            
-            infoContainer.innerHTML = `
-                <div class="project-info-card">
-                    <h1 class="info-title">${data.titulo}</h1>
-                    <span class="info-org"><i class="fa-solid fa-id-card-clip"></i> ${data.organizacion}</span>
-                    <p class="info-general">${data.general}</p>
-                    <p class="info-detailed">${data.detallada}</p>
-                    ${actionBtnHtml}
-                </div>
-            `;
+const infoContainer = document.getElementById("info-card-container");
+let actionBtnHtml = '';
+
+if(type === 'web') {
+    // Evaluamos si el proyecto completo tiene la propiedad deshabilitado en true
+    if (data.deshabilitado) {
+        // Renderiza el botón con la clase opaca y bloqueada de tu CSS
+        actionBtnHtml = `
+            <div class="info-action-bar">
+                <button class="btn-card disabled-btn" onclick="alert('El sitio web real se encuentra temporalmente deshabilitado por el administrador.')">
+                    <i class="fa-solid fa-ban"></i> No se a Generado Demo
+                </button>
+            </div>`;
+    } else {
+        // Si no está deshabilitado, muestra el botón verde/azul para ir al sitio en vivo
+        actionBtnHtml = `
+            <div class="info-action-bar">
+                <a href="${data.urlWeb}" target="_blank" class="btn-card primary-btn btn-inline">
+                    <i class="fa-solid fa-earth-americas"></i> Visitar Sitio Web Vivo
+                </a>
+            </div>`;
+    }
+}
+
+infoContainer.innerHTML = `
+    <div class="project-info-card">
+        <h1 class="info-title">${data.titulo}</h1>
+        <span class="info-org"><i class="fa-solid fa-id-card-clip"></i> ${data.organizacion}</span>
+        <p class="info-general">${data.general}</p>
+        <p class="info-detailed">${data.detallada}</p>
+        ${actionBtnHtml}
+    </div>
+`;
 
             // 2. Pintar las tarjetas de la galería según su tipo y estado
             const grid = document.getElementById("gallery-grid");
