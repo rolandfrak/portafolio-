@@ -19,7 +19,16 @@ const softwareProjects = {
             descripcion: "Plataforma de escritorio local para automatizar trámites de renta y devolució de vehículos.",
             imagen: "img/soft/rentacar/RENTACAR-MENU.png",
             tags: [".NET","MVC","MySql", "Arquitectura TI"]
+        },
+
+        {
+            id: "biblioteca",
+            titulo: "Biblioteca",
+            descripcion: "Plataforma de escritorio local para automatizar trámites de venttas de libros..",
+            imagen: "img/soft/biblioteca/biblioteca-menu.png",
+            tags: [".NET","MVC","MySql", "Arquitectura TI"]
         }
+       
     ],
     web: [
         {
