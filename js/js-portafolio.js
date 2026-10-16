@@ -10,7 +10,7 @@ const softwareProjects = {
             titulo: "Sistema TUPA",
             descripcion: "Plataforma de escritorio local para automatizar trámites institucionales y emisión de boletería ágil.",
             imagen: "img/soft/tupa/menu-tupa.jpg",
-            tags: ["Java NetBeans", "MySQL XAMPP", "Arquitectura TI"]
+            tags: ["Java NetBeans", "MySQL", "Arquitectura TI"]
         },
 
         {
