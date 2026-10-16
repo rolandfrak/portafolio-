@@ -12,6 +12,14 @@ const softwareProjects = {
             imagen: "img/soft/tupa/menu-tupa.jpg",
             tags: ["Java NetBeans", "MySQL XAMPP", "Arquitectura TI"]
         }
+
+        {
+            id: "rentacar",
+            titulo: "RentaCar",
+            descripcion: "Plataforma de escritorio local para automatizar trámites de renta y devolució de vehículos.",
+            imagen: "img/soft/rentacar/RENTACAR-MENU.png",
+            tags: [".NET","MVC","MySql", "Arquitectura TI"]
+        }
     ],
     web: [
         {
