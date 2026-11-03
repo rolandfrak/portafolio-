@@ -117,7 +117,7 @@ const disenoProjects = [
         id: "rapi-ruiz",
         titulo: "Rapi Ruiz",
         descripcion: "Local de comida rapida Rapi Ruiz",
-        imagen: "https://drive.google.com/file/d/1Ij1kVJwjnQpiSAvh3zmuC_D0NA3QDMFV/view?usp=sharing",
+        imagen: "img/logo.png",
         herramientas: ["Inkscape","Logo", "Vector"], // Corrección tipográfica aplicada
         tipo: "Logo"
     }
